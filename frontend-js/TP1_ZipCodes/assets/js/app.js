@@ -1,58 +1,47 @@
+import {
+    createUlWithClass, 
+    createLiWithClass, 
+    createOptionWithValue
+} from './constructorHTML.js'
+
 const CITIES_URL = './zipcodes.json';
-const form = document.getElementById('form');
-// const inputPostal = document.getElementById('#city_name');
-const responsePostal = document.getElementById('result_search');
-// const postalCode = new RegExp('^[1-9]$');
+const searchResult = document.getElementById('result_search');
 const optionDatalist = document.getElementById('postal_code');
+const btn = document.getElementById('btn');
 
-
-// fetch(CITIES_URL)
-// .then(response => response.json())
-// .then(data => {
-//     console.log(data);
-//     let responseList = createUlWithClass('container_data');
-//     for (let city of data) {
-//         console.log(city.nomCommune);
-//         let optionResults = createOptionWithValue(city.nomCommune);
-//         optionDatalist.appendChild(optionResults);
-//     }
-// })
-
-async function getCityInfo() {
+function getCityInfo(tmp = null) {
     fetch(CITIES_URL)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         let responseList = createUlWithClass('container_data');
         for (let city of data) {
-            console.log(city.nomCommune);
-            let optionResults = createOptionWithValue(city.nomCommune);
-            optionDatalist.appendChild(optionResults);
+            if (tmp === city.nomCommune) {
+                let cityData = createUlWithClass(city.nomCommune);
+                searchResult.appendChild(cityData);
+                let postalCode = createLiWithClass(city.codePostal);
+                postalCode.innerHTML = `<strong>Postal code :</strong> ${city.codePostal}`;
+                searchResult.appendChild(postalCode);
+                let codeCommune = createLiWithClass(city.codeCommune);
+                codeCommune.innerHTML = `<strong>Commune code :</strong> ${city.codeCommune}`;
+                searchResult.appendChild(codeCommune);
+                let libelleAcheminement = createLiWithClass(city.libelleAcheminement);
+                libelleAcheminement.innerHTML = `<strong>Libelle acheminement :</strong> ${city.libelleAcheminement}`;
+                searchResult.appendChild(libelleAcheminement);
+            } else if (tmp == null) {
+                let optionResults = createOptionWithValue(city.nomCommune, 'option');
+                optionDatalist.appendChild(optionResults);
+            }
+            
         }})}
 
 getCityInfo();
 
-// form.addEventListener('submit', (e) => {
-//     e.preventDefault();
-
-//     getCityInfo(CITIES_URL)
-// })
-// getCityInfo(CITIES_URL);
-
-let createUlWithClass = function(className) {
-    let ul = document.createElement('ul');
-    ul.setAttribute('class', className);
-    return ul;
+function onInput(e) {
+    searchResult.innerHTML = '';
+    let inputValue = document.getElementById('city_name').value;
+    getCityInfo(inputValue);
 }
 
-let createLiWithClass = function(className) {
-    let li = document.createElement('li');
-    li.setAttribute('class', className);
-    return li;
-}
+document.getElementById('city_name').addEventListener('input', onInput);
 
-let createOptionWithValue = function(value) {
-    let option = document.createElement('option');
-    option.setAttribute('value', value);
-    return option;
-}
+

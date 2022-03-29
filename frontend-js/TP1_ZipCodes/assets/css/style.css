@@ -1,0 +1,21 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.bg-color {
+    background-color: #d5d5d5;
+}
+
+.userChoice {
+    margin: 0.5rem 0 0.5rem 0;
+    display: block;
+    text-align: center;
+}
+
+#result_search {
+    display: flex;
+    flex-direction: column;
+    margin-left: 35%;
+}

@@ -4,38 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./assets/js/app.js" defer></script>
+    <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/app.js" type="module" defer></script>
     <title>ZipCodes</title>
 </head>
-<body>
+<body class="bg-color">
   <div class="container">
-    <!--<form action="" method="get" class="city_form">
-        <div class="city_name">
-          <label for="name">Enter the city name: </label>
-          <input type="text" name="name" id="name" required>
-        </div>
-        <div class="buttun_form">
-          <input type="submit" value="Subscribe!">
-        </div>
-    </form>
-    <div class="result-container">
-
-    </div>-->
-    <div class="form">
-      <label for="city_name">Choose a city name:</label>
-      <input list="postal_code" id="city_name" name="city_name" />
-
-      <datalist id="postal_code">
-          <!--<option value="Chocolate">
-          <option value="Coconut">
-          <option value="Mint">
-          <option value="Strawberry">
-          <option value="Vanilla">-->
-      </datalist>
+    <div class="row justify-content-around">
+      <div class="col-12 col-sm-6">
+        <label for="city_name" class="form-label userChoice">Choose a city name:</label>
+        <input list="postal_code" id="city_name" name="city_name" class="form-control" />
+        <!-- <input type="submit" value="Subscribe!" class="btn"> -->
+        
+        <datalist id="postal_code">
+            <!--<option value="Chocolate">
+            <option value="Coconut">
+            <option value="Mint">
+            <option value="Strawberry">
+            <option value="Vanilla">-->
+        </datalist>
+      </div>
     </div>
-    <div class="result_search">
-      
-    </div>
+    <div id="result_search"> </div>
   </div>
 </body>
 </html>
