@@ -1,6 +1,7 @@
-let createTrWithClass = (className) => {
+let createTrWithClass = (className, id) => {
     let tr = document.createElement('tr');
     tr.setAttribute('class', className);
+    tr.setAttribute('id', id);
     return tr;
 }
 
