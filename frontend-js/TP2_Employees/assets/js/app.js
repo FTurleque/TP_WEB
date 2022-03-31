@@ -4,37 +4,31 @@ import {db_employees} from './fetchAPI.js'
 const url_employees = './assets/json/employees.json';
 const columnName = document.getElementById('column_name');
 const tbody = document.getElementById('employee_info');
+const duplicate = document.querySelector('.duplicate');
 
 let employees = await db_employees(url_employees);
 console.log(employees);
 
+
 const getEmployeeInfo = (data) => {
+    let today = new Date().getFullYear();
     let tr = html.createTrWithClass(`${data.id}`);
-    let tdEmployeeId = html.createTdWithClass('employeeId');
-    tdEmployeeId.textContent = data.id;
-    let tdFullName = html.createTdWithClass('fullName');
-    tdFullName.textContent = data.employee_name;
-    let tdEmail = html.createTdWithClass('email');
-    tdEmail.textContent = 'Email';
-    let tdSalary = html.createTdWithClass('salary');
-    tdSalary.textContent = `${data.employee_salary} €`;
-    let tdYearOfBirth = html.createTdWithClass('birthdate');
-    tdYearOfBirth.textContent = 'Year of birth';
+    let tdEmployeeId = html.createTdWithClass('employeeId', data.id);
+    let tdFullName = html.createTdWithClass('fullName', data.employee_name);
+    let tdEmail = html.createTdWithClass('email', emailCreation(data.employee_name) + '@email.com');
+    let tdSalary = html.createTdWithClass('salary', `${(data.employee_salary/12).toFixed(2)} €`);
+    let tdYearOfBirth = html.createTdWithClass('birthdate', (today - data.employee_age));
     let tdActions = html.createTdWithClass('action');
-    
-    let buttons = html.createDivWithClass('buttons');
-    let duplicateEmployee = html.createButtonWithClass('duplicate btn');
-    let deleteEmployee = html.createButtonWithClass('delete btn');
+    let btns = html.createDivWithClass('btns');
+    let duplicateEmployee = html.createButtonWithClass('duplicate btn', 'Duplicate');
+    let deleteEmployee = html.createButtonWithClass('delete btn', 'Delete');
     let deleteImg = html.createImgWithClassAndUrl('deleteImg', './assets/css/delete.png');
     let duplicateImg = html.createImgWithClassAndUrl('deleteImg', './assets/css/duplicate.png');
-    duplicateEmployee.textContent = 'Duplicate';
-    deleteEmployee.textContent = 'Delete';
-    tdActions.appendChild(buttons)
-    buttons.appendChild(duplicateEmployee);
-    buttons.appendChild(deleteEmployee);
+    tdActions.appendChild(btns)
+    btns.appendChild(duplicateEmployee);
+    btns.appendChild(deleteEmployee);
     deleteEmployee.appendChild(deleteImg);
     duplicateEmployee.appendChild(duplicateImg);
-
     tr.appendChild(tdEmployeeId);
     tr.appendChild(tdFullName);
     tr.appendChild(tdEmail);
@@ -44,19 +38,20 @@ const getEmployeeInfo = (data) => {
     tbody.appendChild(tr);
 }
 
+const emailCreation = (fullName) => {
+    let names = fullName.split(' ');
+    let fistName = names[0].toLowerCase();
+    let lastName = names[1].toLowerCase();
+    return fistName[0] + '.' + lastName;
+}
+
 const getTheColumnName = () => {
-    let employeeId = html.createThWithClass('col_name',);
-    let fullName = html.createThWithClass('col_name');
-    let email = html.createThWithClass('col_name');
-    let salary = html.createThWithClass('col_name');
-    let yearOfBirth = html.createThWithClass('col_name');
-    let actions = html.createThWithClass('col_name');
-    employeeId.textContent = 'EID';
-    fullName.textContent = 'Full Name';
-    email.textContent = 'Email';
-    salary.textContent = 'Monthly salary';
-    yearOfBirth.textContent = 'Year of birth';
-    actions.textContent = 'Actions';
+    let employeeId = html.createThWithClass('col_name', 'EID');
+    let fullName = html.createThWithClass('col_name', 'Full Name');
+    let email = html.createThWithClass('col_name', 'Email');
+    let salary = html.createThWithClass('col_name', 'Monthly salary');
+    let yearOfBirth = html.createThWithClass('col_name', 'Year of birth');
+    let actions = html.createThWithClass('col_name', 'Actions');
     columnName.appendChild(employeeId);
     columnName.appendChild(fullName);
     columnName.appendChild(email);

@@ -29,7 +29,7 @@ th, td {
     padding: .5rem 0 .5rem 0;
 }
 
-.buttons {
+.btns {
     display: flex;
     justify-content: space-around;
 }
