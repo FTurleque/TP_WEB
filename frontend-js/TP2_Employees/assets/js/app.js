@@ -11,10 +11,15 @@ console.log(employees);
 const getEmployeeInfo = (data) => {
     let tr = html.createTrWithClass(`${data.id}`);
     let tdEmployeeId = html.createTdWithClass('employeeId');
+    tdEmployeeId.textContent = data.id;
     let tdFullName = html.createTdWithClass('fullName');
+    tdFullName.textContent = data.employee_name;
     let tdEmail = html.createTdWithClass('email');
+    tdEmail.textContent = 'Email';
     let tdSalary = html.createTdWithClass('salary');
+    tdSalary.textContent = `${data.employee_salary} €`;
     let tdYearOfBirth = html.createTdWithClass('birthdate');
+    tdYearOfBirth.textContent = 'Year of birth';
     let tdActions = html.createTdWithClass('action');
     
     let buttons = html.createDivWithClass('buttons');
@@ -24,16 +29,12 @@ const getEmployeeInfo = (data) => {
     let duplicateImg = html.createImgWithClassAndUrl('deleteImg', './assets/css/duplicate.png');
     duplicateEmployee.textContent = 'Duplicate';
     deleteEmployee.textContent = 'Delete';
-    tdActions.appendChild(duplicateEmployee);
-    tdActions.appendChild(deleteEmployee);
+    tdActions.appendChild(buttons)
+    buttons.appendChild(duplicateEmployee);
+    buttons.appendChild(deleteEmployee);
     deleteEmployee.appendChild(deleteImg);
     duplicateEmployee.appendChild(duplicateImg);
 
-    tdEmployeeId.textContent = data.id;
-    tdFullName.textContent = data.employee_name;
-    tdEmail.textContent = 'Email';
-    tdSalary.textContent = `${data.employee_salary} €`;
-    tdYearOfBirth.textContent = 'Year of birth';
     tr.appendChild(tdEmployeeId);
     tr.appendChild(tdFullName);
     tr.appendChild(tdEmail);
