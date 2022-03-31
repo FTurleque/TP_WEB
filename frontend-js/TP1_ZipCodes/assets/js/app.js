@@ -13,13 +13,14 @@ let getCityInfo = (tmp = null) => {
     fetch(CITIES_URL)
     .then(response => response.json())
     .then(data => {
-        let responseList = createUlWithClass('container_data');
         for (let city of data) {
-            if (tmp === city.nomCommune) {
+            if (tmp === city.nomCommune || tmp === city.codePostal) {
                 displayCityData(city);
             } else if (tmp == null) {
-                let optionResults = createOptionWithValue(city.nomCommune, 'option');
-                optionDatalist.appendChild(optionResults);
+                let optionResultsCityName = createOptionWithValue(city.nomCommune, 'option');
+                let optionResultsPostalCode = createOptionWithValue(city.codePostal, 'option');
+                optionDatalist.appendChild(optionResultsCityName);
+                optionDatalist.appendChild(optionResultsPostalCode);
             }
             
         }})}
