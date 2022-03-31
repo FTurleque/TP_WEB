@@ -1,7 +1,6 @@
 let createTrWithClass = (className, id) => {
     let tr = document.createElement('tr');
-    tr.setAttribute('class', className);
-    tr.setAttribute('id', id);
+    tr.setAttribute('id', className);
     return tr;
 }
 
@@ -25,10 +24,25 @@ let createButtonWithClass = (className) => {
     return btn;
 }
 
+let createImgWithClassAndUrl = (className, url) => {
+    let img = document.createElement('img');
+    img.setAttribute('class', className);
+    img.src = url;
+    return img;
+}
+
+let createDivWithClass =  (className) => {
+    let div = document.createElement('div');
+    div.setAttribute('class', className);
+    return div;
+}
+
 
 export {
     createTrWithClass,
     createThWithClass,
     createTdWithClass,
-    createButtonWithClass
+    createButtonWithClass,
+    createImgWithClassAndUrl,
+    createDivWithClass
 }

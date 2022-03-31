@@ -9,13 +9,26 @@ let employees = await db_employees(url_employees);
 console.log(employees);
 
 const getEmployeeInfo = (data) => {
-    let tr = html.createTrWithClass(data.id);
-    let tdEmployeeId = html.createTdWithClass(data.id);
-    let tdFullName = html.createTdWithClass(data.id);
-    let tdEmail = html.createTdWithClass(data.id);
-    let tdSalary = html.createTdWithClass(data.id);
-    let tdYearOfBirth = html.createTdWithClass(data.id);
-    let tdActions = html.createTdWithClass(data.id);
+    let tr = html.createTrWithClass(`${data.id}`);
+    let tdEmployeeId = html.createTdWithClass('employeeId');
+    let tdFullName = html.createTdWithClass('fullName');
+    let tdEmail = html.createTdWithClass('email');
+    let tdSalary = html.createTdWithClass('salary');
+    let tdYearOfBirth = html.createTdWithClass('birthdate');
+    let tdActions = html.createTdWithClass('action');
+    
+    let buttons = html.createDivWithClass('buttons');
+    let duplicateEmployee = html.createButtonWithClass('duplicate btn');
+    let deleteEmployee = html.createButtonWithClass('delete btn');
+    let deleteImg = html.createImgWithClassAndUrl('deleteImg', './assets/css/delete.png');
+    let duplicateImg = html.createImgWithClassAndUrl('deleteImg', './assets/css/duplicate.png');
+    duplicateEmployee.textContent = 'Duplicate';
+    deleteEmployee.textContent = 'Delete';
+    tdActions.appendChild(duplicateEmployee);
+    tdActions.appendChild(deleteEmployee);
+    deleteEmployee.appendChild(deleteImg);
+    duplicateEmployee.appendChild(duplicateImg);
+
     tdEmployeeId.textContent = data.id;
     tdFullName.textContent = data.employee_name;
     tdEmail.textContent = 'Email';
@@ -31,7 +44,7 @@ const getEmployeeInfo = (data) => {
 }
 
 const getTheColumnName = () => {
-    let employeeId = html.createThWithClass('col_name');
+    let employeeId = html.createThWithClass('col_name',);
     let fullName = html.createThWithClass('col_name');
     let email = html.createThWithClass('col_name');
     let salary = html.createThWithClass('col_name');
