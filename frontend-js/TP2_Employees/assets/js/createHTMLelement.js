@@ -21,7 +21,7 @@ let createTdWithClass =  (className, txt) => {
 let createButtonWithClass = (className, txt) => {
     let btn = document.createElement('button');
     btn.setAttribute('class', className);
-    // btn.setAttribute('type', 'button');
+    btn.setAttribute('type', 'button');
     btn.textContent = txt;
     return btn;
 }

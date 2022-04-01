@@ -4,7 +4,6 @@ import {db_employees} from './fetchAPI.js'
 const url_employees = './assets/json/employees.json';
 const columnName = document.getElementById('column_name');
 const tbody = document.getElementById('employee_info');
-const duplicate = document.querySelector('.duplicate');
 
 let employees = await db_employees(url_employees);
 console.log(employees);
@@ -69,3 +68,20 @@ employees.forEach(employee => {
     }
 });
 
+// const duplicate = document.querySelector('.duplicate');
+
+// document.querySelector('.duplicate').addEventListener('click', (e) => {
+//     console.log('Tata');
+// });
+
+document.querySelectorAll('.duplicate').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        console.log('Tata');
+    })
+});
+
+document.querySelectorAll('.delete').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        console.log('Tata');
+    })
+});
