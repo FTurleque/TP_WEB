@@ -5,7 +5,8 @@ const url_employees = './assets/json/employees.json';
 const columnName = document.getElementById('column_name');
 const tbody = document.getElementById('employee_info');
 
-let employees = await db_employees(url_employees);
+let employees = [];
+employees = await db_employees(url_employees);
 console.log(employees);
 
 
@@ -51,6 +52,8 @@ const getTheColumnName = () => {
     let salary = html.createThWithClass('col_name', 'Monthly salary');
     let yearOfBirth = html.createThWithClass('col_name', 'Year of birth');
     let actions = html.createThWithClass('col_name', 'Actions');
+    let btn = html.createButtonWithClass('sort btn', );
+    salary.appendChild(btn);
     columnName.appendChild(employeeId);
     columnName.appendChild(fullName);
     columnName.appendChild(email);
@@ -68,20 +71,19 @@ employees.forEach(employee => {
     }
 });
 
-// const duplicate = document.querySelector('.duplicate');
-
-// document.querySelector('.duplicate').addEventListener('click', (e) => {
-//     console.log('Tata');
-// });
-
 document.querySelectorAll('.duplicate').forEach(btn => {
     btn.addEventListener('click', (e) => {
-        console.log('Tata');
+        e.preventDefault();
+        let newRow = employees[e.path[3].id - 1];
+        newRow.id = employees.length + 1;
+        getEmployeeInfo(newRow);
+        employees.push(newRow);
     })
 });
 
 document.querySelectorAll('.delete').forEach(btn => {
     btn.addEventListener('click', (e) => {
-        console.log('Tata');
+        document.getElementById(e.path[3].id).remove();
+        console.log('Tatatata');
     })
 });
