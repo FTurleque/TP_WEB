@@ -76,13 +76,15 @@ document.querySelectorAll('.duplicate').forEach(btn => {
         e.preventDefault();
         let newRow = employees[e.path[3].id - 1];
         newRow.id = employees.length + 1;
-        getEmployeeInfo(newRow);
         employees.push(newRow);
+        
+        getEmployeeInfo(newRow);
     })
 });
 
 document.querySelectorAll('.delete').forEach(btn => {
     btn.addEventListener('click', (e) => {
+        e.preventDefault();
         document.getElementById(e.path[3].id).remove();
         console.log('Tatatata');
     })
