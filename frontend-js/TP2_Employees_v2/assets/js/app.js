@@ -27,8 +27,9 @@ export function getEvent(e) {
         });
     } else if (e.currentTarget.outerText == 'Duplicate') {
         let duplicateRow = employeeList[parseInt(e.path[3].className) - 1];
-        let lastEmployeeList = employeeList[employeeList.length - 1];
-        const newEmployee = new Employee(lastEmployeeList.id + 1, duplicateRow.fullName, duplicateRow.salary * 12, duplicateRow.age)
+        let lastEmployeeList = employeeList.length - 1;
+        let lastEmployeeListID = employeeList[lastEmployeeList].id;
+        const newEmployee = new Employee(lastEmployeeListID + 1, duplicateRow.fullName, duplicateRow.salary * 12, duplicateRow.age)
         employeeList.push(newEmployee);
         document.getElementById('employee_info').innerHTML = '';
         employeeList.forEach(emp => {
