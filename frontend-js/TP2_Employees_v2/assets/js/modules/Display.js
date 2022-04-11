@@ -11,13 +11,6 @@ export class DisplayRow {
         return tr;
     }
     
-    // createThWithClass = (className, txt) => {
-    //     let th = document.createElement('th');
-    //     th.setAttribute('class', className);
-    //     th.textContent = txt;
-    //     return th;
-    // }
-    
     createTdWithClass =  (name, className, txt) => {
         let td = document.createElement('td');
         td.setAttribute('name', name);
