@@ -1,8 +1,9 @@
-import { getEvent } from "../app.js";
+// import { getEvent } from "../app.js";
+import { Employee } from "./Employee.js"
 
 export class DisplayRow {
-    constructor() {
-
+    constructor(data) {
+        this.employeeList = data;
     }
 
     createTrWithClass = (className) => {
@@ -25,7 +26,7 @@ export class DisplayRow {
         btn.setAttribute('type', 'button');
         btn.textContent = txt;
         btn.addEventListener('click', (e) => {
-            getEvent(e);
+            this.getEvent(e);
         });
         return btn;
     }
@@ -68,5 +69,26 @@ export class DisplayRow {
         tr.appendChild(tdYearOfBirth);
         tr.appendChild(tdActions);
         document.getElementById('employee_info').appendChild(tr);
+    }
+
+    getEvent(e) {
+        e.preventDefault();
+        if (e.currentTarget.outerText == '^') {
+            this.employeeList.sort(function(a,b){
+                return a.salary - b.salary;
+            })
+        } else if (e.currentTarget.outerText == 'Delete') {
+            delete this.employeeList[parseInt(e.path[3].className) - 1];
+        } else if (e.currentTarget.outerText == 'Duplicate') {
+            let duplicateRow = this.employeeList[parseInt(e.path[3].className) - 1];
+            let lastEmployeeList = this.employeeList.length - 1;
+            let lastEmployeeListID = this.employeeList[lastEmployeeList].id;
+            const newEmployee = new Employee(lastEmployeeListID + 1, duplicateRow.fullName, duplicateRow.salary * 12, duplicateRow.age)
+            this.employeeList.push(newEmployee);
+        }  
+        document.getElementById('employee_info').innerHTML = '';
+        this.employeeList.forEach(emp => {
+            this.getEmployeeInfo(emp);
+        });
     }
 }
