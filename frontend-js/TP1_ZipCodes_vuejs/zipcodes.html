@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/app.js" type="module" defer></script>
+    <title>ZipCodes</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3"></script>
+
+  <div id="app">
+    <!-- Affichege du titre -->
+    <h1>{{ title }}</h1>
+    <!-- Création de l'input -->
+    <input type="text" v-model="inputContent">
+    <a href="#">Search</a>
+    <datalist>
+      <option value="postalCode"></option>
+    </datalist>
+    <!-- Affichage des résultats -->
+    <table>
+      <tbody>
+        <tr>
+          <th>City name</th>
+          <th>Postal code</th>
+          <th>Commune code</th>
+          <th>Libelle acheminement</th>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr @click="displayCityInfo" v-for="city in cities">
+          <td>{{ city.cityName }}</td>
+          <td>{{ city.postalCode }}</td>
+          <td>{{ city.nomCommune }}</td>
+          <td>{{ city.lebelleAcheminement }}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <script>
+      Vue.createApp({
+          data(){
+              return{
+                  title: 'ZipCodes',
+                  inputContent: 'Name or ZipCode',
+                  // cityName: 'City name',
+                  // postalCode: 'Postal code',
+                  // nomCommune: 'CommuneCode',
+                  // lebelleAcheminement: 'Libelle acheminement',
+                  cities: [
+                  {codePostal:"10200",codeCommune:"10002",nomCommune:"Ailleville",libelleAcheminement:"AILLEVILLE"},
+                  {codePostal:"10160",codeCommune:"10003",nomCommune:"Aix-Villemaur-Pâlis",libelleAcheminement:"AIX-VILLEMAUR-PALIS"}
+                  ]
+              }
+          },
+          methods:{
+            // displayCityInfo(){
+              
+            // }
+          }
+      }).mount('#app')
+  </script>
+</body>
+</html>
