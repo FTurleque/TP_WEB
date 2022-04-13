@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="./assets/js/app.js" type="module" defer></script>
     <title>ZipCodes</title>
 </head>
 <body>
@@ -31,11 +30,11 @@
         </tr>
       </tbody>
       <tfoot>
-        <tr @click="displayCityInfo" v-for="city in cities">
-          <td>{{ city.cityName }}</td>
-          <td>{{ city.postalCode }}</td>
+        <tr v-for="city in cities" @click="getCities">
           <td>{{ city.nomCommune }}</td>
-          <td>{{ city.lebelleAcheminement }}</td>
+          <td>{{ city.codePostal }}</td>
+          <td>{{ city.codeCommune }}</td>
+          <td>{{ city.libelleAcheminement }}</td>
         </tr>
       </tfoot>
     </table>
@@ -47,20 +46,11 @@
               return{
                   title: 'ZipCodes',
                   inputContent: 'Name or ZipCode',
-                  // cityName: 'City name',
-                  // postalCode: 'Postal code',
-                  // nomCommune: 'CommuneCode',
-                  // lebelleAcheminement: 'Libelle acheminement',
                   cities: [
-                  {codePostal:"10200",codeCommune:"10002",nomCommune:"Ailleville",libelleAcheminement:"AILLEVILLE"},
-                  {codePostal:"10160",codeCommune:"10003",nomCommune:"Aix-Villemaur-Pâlis",libelleAcheminement:"AIX-VILLEMAUR-PALIS"}
+                    {codePostal:"10200",codeCommune:"10002",nomCommune:"Ailleville",libelleAcheminement:"AILLEVILLE"},
+                    {codePostal:"10160",codeCommune:"10003",nomCommune:"Aix-Villemaur-Pâlis",libelleAcheminement:"AIX-VILLEMAUR-PALIS"}
                   ]
               }
-          },
-          methods:{
-            // displayCityInfo(){
-              
-            // }
           }
       }).mount('#app')
   </script>
