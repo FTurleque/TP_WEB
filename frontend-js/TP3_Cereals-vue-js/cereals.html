@@ -13,7 +13,7 @@
             <legend>
                 <label for="search">Recherche</label>
             </legend>
-            <input type="search" name="search" id="search" placeholder="Nom du céréale">
+            <input @input="searchByName" type="search" name="search" id="search" placeholder="Nom du céréale">
         </fieldset>
         <fieldset>
             <legend>Filter</legend>
@@ -59,7 +59,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="cereal in cereals">
+                <tr v-for="cereal in filteredCereals" :key="cereal.id">
                     <td>{{ cereal.id }}</td>
                     <td>{{ cereal.name }}</td>
                     <td>{{ cereal.calories }}</td>
@@ -83,7 +83,8 @@
         const app = Vue.createApp({
             data() {
                 return {
-                    cereals: []
+                    cereals: [],
+                    searchName: ''
                 }
             },
             methods: {
@@ -120,10 +121,22 @@
                 },
                 cerealRemove(cerealToRemove) {
                     this.cereals = this.cereals.filter(cereal => cereal.id != cerealToRemove.id)
+                },
+                searchByName() {
+                    console.log(event.target.value)
+                    this.searchName = event.target.value
                 }
             },
             computed: {
-
+                filteredCereals() {
+                    let newCereal
+                    if (this.searchName.length > 0) {
+                        newCereal = this.cereals.filter((cereal) => cereal.name.toLowerCase().includes(this.searchName.toLowerCase())) 
+                    } else {
+                        newCereal = this.cereals
+                    }
+                    return newCereal
+                }
             },
             mounted() {
                 this.fetchCereals()
