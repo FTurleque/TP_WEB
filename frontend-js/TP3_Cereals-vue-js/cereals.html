@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.2.33/dist/vue.global.js"></script>
+    <script src="assets/main.js" type="module"></script>
     <title>Cereals</title>
 </head>
 <body>
-    <script src="https://unpkg.com/vue@3"></script>
     <div id="app">
         <fieldset>
             <legend>
@@ -79,69 +80,5 @@
             </tbody>
         </table>
     </div>
-    <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    cereals: [],
-                    searchName: ''
-                }
-            },
-            methods: {
-                async fetchCereals() {
-                    try {
-                        let response = await fetch('https://arfp.github.io/tp/web/frontend/cereals/cereals.json')
-                        if(response.ok) {
-                            let cerealsData = await response.json()
-                            this.cereals = cerealsData.data
-                            this.cereals.forEach(cereal => {
-                                cereal.nutriscore = this.addNutriscore(cereal)
-                            });
-                        }
-                    } catch (error) {
-                        console.log(`Error : ${error}`)
-                    }
-                },
-                addNutriscore(cereal) {
-                    if(cereal.rating > 80) {
-                        return 'A'
-                    }
-                    if(cereal.rating > 70) {
-                        return 'B'
-                    }
-                    if(cereal.rating > 55) {
-                        return 'C'
-                    }
-                    if(cereal.rating > 35) {
-                        return 'D'
-                    }
-                    if(cereal.rating < 35) {
-                        return 'E'
-                    }
-                },
-                cerealRemove(cerealToRemove) {
-                    this.cereals = this.cereals.filter(cereal => cereal.id != cerealToRemove.id)
-                },
-                searchByName() {
-                    console.log(event.target.value)
-                    this.searchName = event.target.value
-                }
-            },
-            computed: {
-                filteredCereals() {
-                    let newCereal
-                    if (this.searchName.length > 0) {
-                        newCereal = this.cereals.filter((cereal) => cereal.name.toLowerCase().includes(this.searchName.toLowerCase())) 
-                    } else {
-                        newCereal = this.cereals
-                    }
-                    return newCereal
-                }
-            },
-            mounted() {
-                this.fetchCereals()
-            },
-        }).mount('#app')
-    </script>
 </body>
 </html>
