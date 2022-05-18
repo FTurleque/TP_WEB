@@ -10,11 +10,11 @@
 </head>
 <body>
     <div id="app">
-        <fieldset>
+        <fieldset @input="searchByName">
             <legend>
                 <label for="search">Recherche</label>
             </legend>
-            <input @input="searchByName" type="search" name="search" id="search" placeholder="Nom du céréale">
+            <input type="search" name="search" id="search" placeholder="Nom du céréale" v-model="searchName">
         </fieldset>
         <fieldset>
             <legend>Filter</legend>
@@ -60,7 +60,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="cereal in filteredCereals" :key="cereal.id">
+                <tr v-for="cereal in cereals" :key="cereal.id">
                     <td>{{ cereal.id }}</td>
                     <td>{{ cereal.name }}</td>
                     <td>{{ cereal.calories }}</td>

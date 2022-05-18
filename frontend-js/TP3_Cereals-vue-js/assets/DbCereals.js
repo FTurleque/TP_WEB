@@ -20,12 +20,25 @@ class DbCereals
     static async getCereals() {
         let json = await DbCereals.#getCerealJson()
         this.db = json.map(cereal => new Cereal(cereal))
+        return this.db
     }
 
-    static async cerealToDeleted(cerealToRemove) {
-        let tmp = await this.getCereals()
-        tmp.filter(cereal => cereal.id != cerealToRemove.id)
-        console.log(tmp)
+    static cerealToDeleted(cerealToRemove) {
+        this.db = this.db.filter(cereal => cereal.id != cerealToRemove.id)
+        return this.db
+    }
+
+    static filteredByName(searchName) {
+        if (searchName.length > 0) {
+            return this.db.filter((cereal) => cereal.name.toLowerCase().includes(searchName.toLowerCase())) 
+        } else {
+            return this.db
+        }
+        
+    }
+
+    static filteredByNutriscore() {
+        
     }
 }
 
