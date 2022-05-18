@@ -17,7 +17,7 @@
         </fieldset>
         <fieldset>
             <legend>Filter</legend>
-            <fieldset>
+            <fieldset @input="searchNutriscore">
                 <legend>Nutriscore</legend>
                 <label for="a">A</label>
                 <input type="checkbox" name="nutriscore" id="a" value="a">
@@ -84,7 +84,8 @@
             data() {
                 return {
                     cereals: [],
-                    searchName: ''
+                    searchName: '',
+                    searchNutriscoreName: []
                 }
             },
             methods: {
@@ -123,8 +124,13 @@
                     this.cereals = this.cereals.filter(cereal => cereal.id != cerealToRemove.id)
                 },
                 searchByName() {
-                    console.log(event.target.value)
                     this.searchName = event.target.value
+                    console.log(this.searchName)
+                },
+                searchNutriscore() {
+                    let fieldset = event.target.parentNode
+                    let inputChecked = fieldset.querySelectorAll('input[type=checkbox]:checked')
+                    console.log(inputChecked)
                 }
             },
             computed: {
