@@ -8,8 +8,8 @@ const app = {
         }
     },
     methods: {
-        cerealRemove(cerealToRemove) {
-            this.cereals = this.cereals.filter(cereal => cereal.id != cerealToRemove.id)
+        cerealRemove(cereal) {
+            this.cereals = DbCereals.cerealToDeleted(cereal)
         },
         searchByName() {
             console.log(event.target.value)
@@ -29,8 +29,8 @@ const app = {
     },
     async mounted() {
         // Je lance la récupération des données et la stock dans un tableau
-        this.cereals = await DbCereals.getCereals()
-        console.log(this.cereals)
+        await DbCereals.getCereals()
+        this.cereals = await DbCereals.dbCerealsJson
     },
 }
 
