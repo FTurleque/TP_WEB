@@ -20,7 +20,7 @@ const app = {
             this.cereals = DbCereals.filteredByNutriscore(this.nutriscores)
         },
         searchByCategorie() {
-            console.log(this.categorie)
+            this.cereals = DbCereals.filteredByCategorie(this.categorie)
         }
     },
     computed: {
