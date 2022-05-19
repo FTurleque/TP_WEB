@@ -55,8 +55,20 @@ class DbCereals
         }
     }
 
-    static searchByCategorie(_categorie) {
-        
+    static filteredByCategorie(_categorie) {
+        if(_categorie === 'sans-sucre') {
+            return this.db.filter(cereal => cereal.sugars < 1)
+        }
+
+        if(_categorie === 'pauvre-en-sel') {
+            return this.db.filter(cereal => cereal.sodium < 50)
+        }
+
+        if(_categorie === 'boost') {
+            return this.db.filter(cereal => cereal.vitamins >= 25 && cereal.fiber >= 10)
+        } else {
+            return this.db
+        }
     }
 }
 
