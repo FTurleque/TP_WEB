@@ -5,7 +5,8 @@ const app = {
         return {
             cereals: [],
             searchName: '',
-            nutriscore: ''
+            nutriscores: [],
+            categorie: ''
         }
     },
     methods: {
@@ -15,8 +16,11 @@ const app = {
         searchByName() {
             this.cereals = DbCereals.filteredByName(this.searchName)
         },
-        searchNutriscore(value) {
-            console.log(value)
+        searchByNutriscore() {
+            this.cereals = DbCereals.filteredByNutriscore(this.nutriscores)
+        },
+        searchByCategorie() {
+            console.log(this.categorie)
         }
     },
     computed: {

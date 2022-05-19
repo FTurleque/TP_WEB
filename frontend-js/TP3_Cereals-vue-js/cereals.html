@@ -18,22 +18,22 @@
         </fieldset>
         <fieldset>
             <legend>Filter</legend>
-            <fieldset @input="searchNutriscore">
+            <fieldset @change="searchByNutriscore">
                 <legend>Nutriscore</legend>
                 <label for="a">A</label>
-                <input type="checkbox" name="nutriscore" id="a" value="a">
+                <input type="checkbox" id="a" value="a" v-model="nutriscores">
                 <label for="b">B</label>
-                <input type="checkbox" name="nutriscore" id="b" value="b">
+                <input type="checkbox" id="b" value="b" v-model="nutriscores">
                 <label for="c">C</label>
-                <input type="checkbox" name="nutriscore" id="c" value="c">
+                <input type="checkbox" id="c" value="c" v-model="nutriscores">
                 <label for="d">D</label>
-                <input type="checkbox" name="nutriscore" id="d" value="d">
+                <input type="checkbox" id="d" value="d" v-model="nutriscores">
                 <label for="e">E</label>
-                <input type="checkbox" name="nutriscore" id="e" value="e">
+                <input type="checkbox" id="e" value="e" v-model="nutriscores">
             </fieldset>
             <fieldset>
                 <legend>Catégorie</legend>
-                <select name="" id="">
+                <select @change="searchByCategorie" name="categories" id="categories" v-model="categorie">
                     <option value="tous">Tous</option>
                     <option value="sans-sucre">Sans sucre</option>
                     <option value="pauvre-en-sel">Pauvre en sel</option>
@@ -61,7 +61,7 @@
             </thead>
             <tbody>
                 <tr v-for="cereal in cereals" :key="cereal.id">
-                    <td>{{ cereal.id }}</td>
+                    <th>{{ cereal.id }}</th>th
                     <td>{{ cereal.name }}</td>
                     <td>{{ cereal.calories }}</td>
                     <td>{{ cereal.protein }}</td>
@@ -73,9 +73,9 @@
                     <td>{{ cereal.vitamins }}</td>
                     <td>{{ cereal.rating }}</td>
                     <td :class="cereal.nutriscore">{{ cereal.nutriscore }}</td>
-                    <td>
+                    <th>
                         <button @click="cerealRemove(cereal)">x</button>
-                    </td>
+                    </th>
                 </tr>
             </tbody>
         </table>

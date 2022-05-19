@@ -23,21 +23,39 @@ class DbCereals
         return this.db
     }
 
-    static cerealToDeleted(cerealToRemove) {
-        this.db = this.db.filter(cereal => cereal.id != cerealToRemove.id)
+    static cerealToDeleted(_cerealToRemove) {
+        this.db = this.db.filter(cereal => cereal.id != _cerealToRemove.id)
         return this.db
     }
 
-    static filteredByName(searchName) {
-        if (searchName.length > 0) {
-            return this.db.filter((cereal) => cereal.name.toLowerCase().includes(searchName.toLowerCase())) 
+    static filteredByName(_searchName) {
+        if (_searchName.length > 0) {
+            return this.db.filter((cereal) => cereal.name.toLowerCase().includes(_searchName.toLowerCase())) 
         } else {
             return this.db
         }
         
     }
 
-    static filteredByNutriscore() {
+    static filteredByNutriscore(_nutriscores) {
+        if(_nutriscores.length > 0){
+            let newCerealsArray = []
+            _nutriscores.forEach(nutriscore => {
+                console.log(nutriscore)
+                this.db.filter(cereal => {
+                    if(cereal.nutriscore.toLowerCase().includes(nutriscore)) {
+                        newCerealsArray.push(cereal)
+                    }
+                })
+            });
+            console.log(newCerealsArray.length)
+            return newCerealsArray
+        } else {
+            return this.db
+        }
+    }
+
+    static searchByCategorie(_categorie) {
         
     }
 }
