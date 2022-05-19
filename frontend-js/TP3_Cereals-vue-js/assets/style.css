@@ -1,0 +1,28 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.fieldset, .search-container, .search-select, .checkbox-conainer {
+    display: flex;
+    align-items: center;
+}
+
+.fieldset, .search-container, .search-select {
+    justify-content: space-between;
+    gap: 2px;
+}
+
+h1 {
+    flex: 3;
+    text-align: center;
+}
+
+.search-container {
+    flex: 1;
+}
+
+input[type="search"] {
+    border: 0px;
+}

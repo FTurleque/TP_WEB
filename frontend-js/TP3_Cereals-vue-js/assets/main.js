@@ -3,6 +3,7 @@ import { DbCereals } from './DbCereals.js'
 const app = {
     data() {
         return {
+            title: 'Cereals',
             cereals: [],
             searchName: '',
             nutriscores: [],

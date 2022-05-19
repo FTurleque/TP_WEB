@@ -6,41 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3.2.33/dist/vue.global.js"></script>
     <script src="assets/main.js" type="module"></script>
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Cereals</title>
 </head>
 <body>
     <div id="app">
-        <fieldset @input="searchByName">
-            <legend>
-                <label for="search">Recherche</label>
-            </legend>
-            <input type="search" name="search" id="search" placeholder="Nom du céréale" v-model="searchName">
-        </fieldset>
-        <fieldset>
-            <legend>Filter</legend>
-            <fieldset @change="searchByNutriscore">
-                <legend>Nutriscore</legend>
-                <label for="a">A</label>
-                <input type="checkbox" id="a" value="a" v-model="nutriscores">
-                <label for="b">B</label>
-                <input type="checkbox" id="b" value="b" v-model="nutriscores">
-                <label for="c">C</label>
-                <input type="checkbox" id="c" value="c" v-model="nutriscores">
-                <label for="d">D</label>
-                <input type="checkbox" id="d" value="d" v-model="nutriscores">
-                <label for="e">E</label>
-                <input type="checkbox" id="e" value="e" v-model="nutriscores">
-            </fieldset>
-            <fieldset>
-                <legend>Catégorie</legend>
-                <select @change="searchByCategorie" name="categories" id="categories" v-model="categorie">
-                    <option value="tous">Tous</option>
-                    <option value="sans-sucre">Sans sucre</option>
-                    <option value="pauvre-en-sel">Pauvre en sel</option>
-                    <option value="boost">Boost</option>
-                </select>
-            </fieldset>
-        </fieldset>
+        <header class="fieldset">
+            <h1>{{ title }}</h1>
+            <div class="search-container">
+                <fieldset @input="searchByName">
+                    <legend>
+                        <label for="search">Recherche</label>
+                    </legend>
+                    <input type="search" name="search" id="search" placeholder="Nom du céréale" v-model="searchName">
+                </fieldset>
+                <fieldset class="search-select">
+                    <legend>Filter</legend>
+                    <fieldset @change="searchByNutriscore" class="checkbox-conainer">
+                        <legend>Nutriscore</legend>
+                        <label for="a">A</label>
+                        <input type="checkbox" id="a" value="a" v-model="nutriscores">
+                        <label for="b">B</label>
+                        <input type="checkbox" id="b" value="b" v-model="nutriscores">
+                        <label for="c">C</label>
+                        <input type="checkbox" id="c" value="c" v-model="nutriscores">
+                        <label for="d">D</label>
+                        <input type="checkbox" id="d" value="d" v-model="nutriscores">
+                        <label for="e">E</label>
+                        <input type="checkbox" id="e" value="e" v-model="nutriscores">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Catégorie</legend>
+                        <select @change="searchByCategorie" name="categories" id="categories" v-model="categorie">
+                            <option value="tous">Tous</option>
+                            <option value="sans-sucre">Sans sucre</option>
+                            <option value="pauvre-en-sel">Pauvre en sel</option>
+                            <option value="boost">Boost</option>
+                        </select>
+                    </fieldset>
+                </fieldset>
+            </div>
+        </header>
         <table>
             <thead>
                 <tr>
@@ -61,7 +67,7 @@
             </thead>
             <tbody>
                 <tr v-for="cereal in cereals" :key="cereal.id">
-                    <th>{{ cereal.id }}</th>th
+                    <th>{{ cereal.id }}</th>
                     <td>{{ cereal.name }}</td>
                     <td>{{ cereal.calories }}</td>
                     <td>{{ cereal.protein }}</td>
