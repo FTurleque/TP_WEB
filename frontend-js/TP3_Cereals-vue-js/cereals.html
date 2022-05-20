@@ -11,10 +11,10 @@
 </head>
 <body>
     <div id="app">
-        <header class="fieldset">
+        <header>
             <h1>{{ title }}</h1>
             <div class="search-container">
-                <fieldset @input="searchByName">
+                <fieldset @input="searchByName" class="research">
                     <legend>
                         <label for="search">Recherche</label>
                     </legend>
@@ -47,7 +47,7 @@
                 </fieldset>
             </div>
         </header>
-        <table>
+        <table class="cereal-container">
             <thead>
                 <tr>
                     <th>ID</th>
