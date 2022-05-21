@@ -22,7 +22,7 @@
                 </fieldset>
                 <fieldset class="search-select">
                     <legend>Filter</legend>
-                    <fieldset @change="searchByNutriscore" class="checkbox-conainer">
+                    <fieldset @change="searchByNutriscore" class="checkbox-container">
                         <legend>Nutriscore</legend>
                         <label for="a">A</label>
                         <input type="checkbox" id="a" value="a" v-model="nutriscores">
@@ -67,8 +67,8 @@
             </thead>
             <tbody>
                 <tr v-for="cereal in cereals" :key="cereal.id">
-                    <th>{{ cereal.id }}</th>
-                    <td>{{ cereal.name }}</td>
+                    <td class="cereals-ids">{{ cereal.id }}</td>
+                    <td class="cereals-name">{{ cereal.name }}</td>
                     <td>{{ cereal.calories }}</td>
                     <td>{{ cereal.protein }}</td>
                     <td>{{ cereal.sodium }}</td>
@@ -78,12 +78,20 @@
                     <td>{{ cereal.potass }}</td>
                     <td>{{ cereal.vitamins }}</td>
                     <td>{{ cereal.rating }}</td>
-                    <td :class="cereal.nutriscore">{{ cereal.nutriscore }}</td>
-                    <th>
-                        <button @click="cerealRemove(cereal)">x</button>
-                    </th>
+                    <th :class="cereal.nutriscore">{{ cereal.nutriscore }}</th>
+                    <td class="cereals-del">
+                        <button @click="cerealRemove(cereal)">X</button>
+                    </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td class="cereals-ids">{{ cereals.length }}</td>
+                    <td></td>
+                    <td :@change="averageCalorieCalculate">Moyenne calories : {{ averageCalorie }}</td>
+                    <td colspan="11"></td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </body>

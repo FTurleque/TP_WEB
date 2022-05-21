@@ -7,7 +7,8 @@ const app = {
             cereals: [],
             searchName: '',
             nutriscores: [],
-            categorie: ''
+            categorie: '',
+            averageCalorie: 0
         }
     },
     methods: {
@@ -25,12 +26,17 @@ const app = {
         }
     },
     computed: {
-
+        averageCalorieCalculate() {
+            let caloriesAvg = 0
+            this.cereals.forEach(cereal => {
+                caloriesAvg += cereal.calories
+            });
+            this.averageCalorie = caloriesAvg
+        }
     },
     async mounted() {
         // Je lance la récupération des données et la stock dans un tableau
         this.cereals = await DbCereals.getCereals()
-        // this.cereals = await DbCereals.dbCerealsJson
     },
 }
 
